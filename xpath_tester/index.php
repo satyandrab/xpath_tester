@@ -66,14 +66,15 @@ img {border: 0;}
 <body>
 <?php
 clearstatcache();
+$n=0;
 if ($handle = opendir('.')) {
   while (false !== ($file = readdir($handle))) {
-    if ($file != "." && $file != ".." && $file != substr($PHP_SELF, -(strlen($PHP_SELF) - strrpos($PHP_SELF, "/") - 1))) {
-
+    if ($file != "." && $file != ".." && $file != substr($_SERVER['PHP_SELF'], -(strlen($_SERVER['PHP_SELF']) - strrpos($_SERVER['PHP_SELF'], "/") - 1))) {
+    
 	  if (filetype($file) == "dir") {
 		  //SET THE KEY ENABLING US TO SORT
 		  $n++;
-		  if($_REQUEST['sort']=="date") {
+		  if(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'date') {
 			$key = filemtime($file) . ".$n";
 		  }
 		  else {
@@ -84,10 +85,10 @@ if ($handle = opendir('.')) {
       else {
 		  //SET THE KEY ENABLING US TO SORT
 		  $n++;
-		  if($_REQUEST['sort']=="date") {
+		  if(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'date') {
 			$key = filemtime($file) . ".$n";
 		  }
-		  elseif($_REQUEST['sort']=="size") {
+		  elseif(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'size') {
 			$key = filesize($file) . ".$n";
 		  }
 		  else {
@@ -101,11 +102,11 @@ closedir($handle);
 }
 
 #USE THE CORRECT ALGORITHM AND SORT OUR ARRAY
-if($_REQUEST['sort']=="date") {
+if(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'date') {
 	@ksort($dirs, SORT_NUMERIC);
 	@ksort($files, SORT_NUMERIC);
 }
-elseif($_REQUEST['sort']=="size") {
+elseif(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'size') {
 	@natcasesort($dirs);
 	@ksort($files, SORT_NUMERIC);
 }
@@ -115,16 +116,16 @@ else {
 }
 
 #ORDER ACCORDING TO ASCENDING OR DESCENDING AS REQUESTED
-if($_REQUEST['order']=="desc" && $_REQUEST['sort']!="size") {$dirs = array_reverse($dirs);}
-if($_REQUEST['order']=="desc") {$files = array_reverse($files);}
+if((isset($_REQUEST['sort']) && $_REQUEST['sort']== 'desc') && (isset($_REQUEST['sort']) && $_REQUEST['sort']== 'size')) {$dirs = array_reverse($dirs);}
+if(isset($_REQUEST['order']) && $_REQUEST['sort']== 'desc') {$files = array_reverse($files);}
 $dirs = @array_values($dirs); $files = @array_values($files);
 
 echo "<table width=\"650\" border=\"0\" cellspacing=\"0\" align=\"center\"><tr bgcolor=\"$headercolor\"><td colspan=\"2\" id=\"bottomborder\">";
-if($_REQUEST['sort']!="name") {
+if(isset($_REQUEST['sort']) && $_REQUEST['sort']!= 'name') {
   echo "<a href=\"".$_SERVER['PHP_SELF']."?sort=name&order=asc\">";
 }
 else {
-  if($_REQUEST['order']=="desc") {#
+  if(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'desc') {#
     echo "<a href=\"".$_SERVER['PHP_SELF']."?sort=name&order=asc\">";
   }
   else {
@@ -132,11 +133,11 @@ else {
   }
 }
 echo "File</td><td id=\"bottomborder\" width=\"50\"></a>";
-if($_REQUEST['sort']!="size") {
+if(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'size') {
   echo "<a href=\"".$_SERVER['PHP_SELF']."?sort=size&order=asc\">";
 }
 else {
-  if($_REQUEST['order']=="desc") {#
+  if(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'desc') {#
     echo "<a href=\"".$_SERVER['PHP_SELF']."?sort=size&order=asc\">";
   }
   else {
@@ -144,11 +145,11 @@ else {
   }
 }
 echo "Size</td><td id=\"bottomborder\" width=\"120\" nowrap></a>";
-if($_REQUEST['sort']!="date") {
+if(isset($_REQUEST['sort']) && $_REQUEST['sort']== 'date()') {
   echo "<a href=\"".$_SERVER['PHP_SELF']."?sort=date&order=asc\">";
 }
 else {
-  if($_REQUEST['order']=="desc") {#
+  if(isset($_REQUEST['order']) && $_REQUEST['sort']== 'desc') {#
     echo "<a href=\"".$_SERVER['PHP_SELF']."?sort=date&order=asc\">";
   }
   else {

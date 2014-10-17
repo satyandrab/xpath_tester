@@ -1,3 +1,4 @@
+<P>Here's an example:</P>
 <?php
 $test_url = 'http://www.nutrahealthsupply.com/GAT/Nitraflex';
 $arrXpaths = array(
@@ -11,4 +12,3 @@ $arrXpaths = array(
 
 require('includes/main.php');
 ?>
-
