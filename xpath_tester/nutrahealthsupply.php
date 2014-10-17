@@ -5,8 +5,8 @@ $arrXpaths = array(
 					'Price' => '//h2[@id="productPrices"]/text()',
 					'Product Name' => '//h1[@id="productName"]/text()',
 					'UPC' => '',
-					'SKU' => '',
-					'Image' => '//div[@id="productMainImage"]/script/text()',
+					'SKU' => '//input[@name="products_id"]/@value',
+					'Image' => '//div[@id="productMainImage"]/a/@href',
 					'Retail Price' => '',
 				  );
 

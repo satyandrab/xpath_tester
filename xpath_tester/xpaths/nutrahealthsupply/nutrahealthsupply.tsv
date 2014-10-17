@@ -1,2 +1,2 @@
 Price	"Product Name"	UPC	SKU	Image	"Retail Price"
-"//h2[@id=""productPrices""]/text()"	"//h1[@id=""productName""]/text()"			"//div[@id=""productMainImage""]/script/text()"	
+"//h2[@id=""productPrices""]/text()"	"//h1[@id=""productName""]/text()"		"//input[@name=""products_id""]/@value"	"//div[@id=""productMainImage""]/a/@href"	
