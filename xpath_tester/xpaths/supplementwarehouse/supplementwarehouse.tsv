@@ -1,0 +1,2 @@
+Price	"Product Name"	UPC	SKU	Image	"Retail Price"
+"//span[contains(text(),""Our Price"")]/text()"	"//div[@id=""detailText""]/table[1]//tr[2]/td/ul/li/span[2]/span/span/span/em/strong/text()"	".//*[@id=""detailText""]/table[1]/tbody/tr[2]/td/ul/strong/strong/strong/strong/strong/strong/strong/strong/strong/strong/em/em/li/span[2]/span/span/span/em/strong"		"//table[@class=""listrow""]//table//tr[1]/td[2]/img[""src""]"	

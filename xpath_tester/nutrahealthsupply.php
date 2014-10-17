@@ -6,7 +6,7 @@ $arrXpaths = array(
 					'Product Name' => '//h1[@id="productName"]/text()',
 					'UPC' => '',
 					'SKU' => '',
-					'Image' => '//div[@id="productMainImage"]/noscript/text()',
+					'Image' => '//div[@id="productMainImage"]/script/text()',
 					'Retail Price' => '',
 				  );
 
